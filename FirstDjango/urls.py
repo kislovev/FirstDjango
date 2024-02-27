@@ -2,7 +2,10 @@
 from django.contrib import admin
 from django.urls import path
 
+from MainApp import views
+
 urlpatterns = [
-    path('', ),
-    path('', )
+    path('', views.home ),
+    path('about', views.about)
+    path("item/int:<id>/",views.item, name='new_id')
 ]
