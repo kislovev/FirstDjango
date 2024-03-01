@@ -1,6 +1,5 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
-from django.urls import reverse
+from django.http import HttpResponse, HttpResponseNotFound
+from django.shortcuts import get_object_or_404, render
 
 # Create your views here.
 author = {"Имя": "Евгений",
@@ -23,8 +22,6 @@ def about(request):
     Телефон: <b>{author['телефон']}</b><br>
     email: <b>{author['email']}</b>
     '''
-
-
     return HttpResponse(text)
 
 items = [
@@ -35,14 +32,12 @@ items = [
    {"id": 8, "name": "Кепка" ,"quantity":124},
 ]
 
-def item(request):
-   id = f'''
+def item_detail(request, item_id):
+    item = get_object_or_404(items, id = item_id)
+    return render(request, 'item_detail.html', {'item': item})
 
+def item_not_found(request, item_id):
+    return HttpResponseNotFound("Товар с id={} не найден".format(item_id))
 
-
-   '''
-
-
-    
-
-    return HttpResponseRedirect(reverse(new_id, args=id,))
+def all_items(request):
+    return render(request, 'all_items.html', {'items': items})
