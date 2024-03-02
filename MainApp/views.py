@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseNotFound
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render
 
 # Create your views here.
 author = {"Имя": "Евгений",
@@ -32,12 +32,14 @@ items = [
    {"id": 8, "name": "Кепка" ,"quantity":124},
 ]
 
-def item_detail(request, item_id):
-    item = get_object_or_404(items, id = item_id)
-    return render(request, 'item_detail.html', {'item': item})
 
-def item_not_found(request, item_id):
-    return HttpResponseNotFound("Товар с id={} не найден".format(item_id))
+def item(request, item_id):
+    for item in items:
+        if item['id'] == item_id:
+            result = f'''
+            <h2> Имя: {item['name']} </h2>
+            <p> Количество: {item['quantity']} </p>
+            '''
+            return HttpResponse(result)
+    return HttpResponseNotFound(f'item with id={item_id} not found')
 
-def all_items(request):
-    return render(request, 'all_items.html', {'items': items})
