@@ -1,7 +1,8 @@
 __pycache__/
 *.pyc
-*.egg-info
-.DS_Store
 *env/
-/.env
-*.log
+DS_Store/
+.idea/
+.vscode/
+*.db
+*.tmp
