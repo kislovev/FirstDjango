@@ -9,11 +9,11 @@ author = {"Имя": "Евгений",
     "email": "e.kislow32@yandex.ru"
 }
 def home(request):
-    text = '''<h1>Изучаем django</h1>
-        <strong>Автор</strong>: <i>Кислов Е.В.</i>
-        '''
-    return HttpResponse(text)
-
+    # text = '''<h1>Изучаем django</h1>
+    #     <strong>Автор</strong>: <i>Кислов Е.В.</i>
+    #     '''
+    # return HttpResponse(text)
+    return render(request, "index.html")
 def about(request):
     text = f'''
     Имя: <b>{author['Имя']}</b><br>
