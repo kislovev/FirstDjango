@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
-</head>
-<body>
-    <h1>About the Author</h1>
-    <p>This website is created by [Your Name].</p>
-    <a href="/">Home</a>
-    <a href="/items/">Items</a>
-</body>
-</html>
+{% extends "base.html" %}
+
+
+{% block title %}
+    About
+{% endblock  %}
+
+{% block content %}
+    {{ block.super }}
+
+    Имя: <b>{{ author.first_name }}</b><br>
+    Отчество: <b>{{ author.middle_name }}</b><br>
+    Фамилия: <b>{{ author.last_name }}</b><br>
+    телефон: <b>{{ author.phone }}</b><br>
+    email: <b> {{ author.email  }}</b><br>
+
+{% endblock %}
